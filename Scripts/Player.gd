@@ -1,5 +1,6 @@
 extends "res://Scripts/Character.gd"
 
+const MAX_TURN_SPEED = 10 # deg/frame
 var motion = Vector2()
 onready var torch_node = $Torch
 var torch_active
@@ -16,7 +17,8 @@ func _input(event):
 		toggle_torch()
 	
 func update_motion(delta):
-	look_at(get_global_mouse_position())
+	turn_to_mouse()
+	
 	
 	# Read input
 	var velocity = Vector2()
@@ -35,7 +37,18 @@ func update_motion(delta):
 	
 	# Limit to max speed
 	motion = motion.clamped(MAX_SPEED)
+
+
+func turn_to_mouse():
+	var forward = Vector2.RIGHT.rotated(rotation)
+	var mouse_direction = get_global_mouse_position() - position
+	var angle_diff = forward.angle_to(mouse_direction)*180/PI
+	angle_diff = clamp(angle_diff, -MAX_TURN_SPEED, MAX_TURN_SPEED)
 	
+	rotation_degrees += angle_diff
+	
+	# look_at(get_global_mouse_position())
+
 func toggle_torch():
 	torch_active = !torch_active
 	torch_node.enabled = torch_active
