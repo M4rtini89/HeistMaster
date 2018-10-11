@@ -3,6 +3,9 @@ extends "res://Scripts/Character.gd"
 const MAX_TURN_SPEED = 10 # deg/frame
 var motion = Vector2()
 
+func _ready():
+	Global.Player = self
+
 func _process(delta):
 	update_motion(delta)
 	motion = move_and_slide(motion)

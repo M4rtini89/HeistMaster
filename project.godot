@@ -19,6 +19,10 @@ config/name="Heist Masters"
 run/main_scene="res://Scenes/Level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Scripts/Global.gd"
+
 [input]
 
 ui_left={
@@ -60,6 +64,7 @@ Click={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="SecurityCameras"
+2d_physics/layer_4="Guards"
 
 [rendering]
 

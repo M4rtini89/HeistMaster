@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Tilesets/FloorTiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Scenes/Characters/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Characters/SecurityCamera.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Characters/Guard.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tilesets/AutoTileWalls.tres" type="TileSet" id=5]
+[ext_resource path="res://Scripts/Navigation2D.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Destinations.gd" type="Script" id=2]
+[ext_resource path="res://Tilesets/FloorTiles.tres" type="TileSet" id=3]
+[ext_resource path="res://Scenes/Characters/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Characters/SecurityCamera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Characters/Guard.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Tilesets/AutoTileWalls.tres" type="TileSet" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -14,9 +16,42 @@ outlines = [ PoolVector2Array( 712.998, 73.9997, 948.998, 74.9997, 951.998, 302.
 
 [node name="Level" type="Node2D"]
 
+[node name="Navigation2D" type="Navigation2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 1 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+enabled = true
+
+[node name="Destinations" type="Node2D" parent="Navigation2D"]
+editor/display_folded = true
+script = ExtResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="Navigation2D/Destinations"]
+position = Vector2( 360.254, 1127.49 )
+
+[node name="Position2D2" type="Position2D" parent="Navigation2D/Destinations"]
+position = Vector2( 2393.65, 672.273 )
+
+[node name="Position2D3" type="Position2D" parent="Navigation2D/Destinations"]
+position = Vector2( 785.323, 1174.22 )
+
+[node name="Position2D4" type="Position2D" parent="Navigation2D/Destinations"]
+position = Vector2( 150.734, 738.595 )
+
+[node name="Position2D5" type="Position2D" parent="Navigation2D/Destinations"]
+position = Vector2( 743.117, 889.329 )
+
+[node name="Position2D6" type="Position2D" parent="Navigation2D/Destinations"]
+position = Vector2( 722.015, 450.694 )
+
+[node name="Position2D7" type="Position2D" parent="Navigation2D/Destinations"]
+position = Vector2( 835.065, 211.027 )
+
 [node name="Floor" type="TileMap" parent="."]
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -34,7 +69,7 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 15, 0, 0, 65536, 0, 0, 65537, 0, 5, 65538, 0, 5, 65539, 0, 4, 65540, 0, 3, 65541, 0, 2, 65542, 0, 4, 65543, 0, 1, 65544, 0, 2, 65545, 0, 0, 65546, 0, 5, 65547, 0, 4, 65548, 0, 5, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 5, 131076, 0, 2, 131077, 0, 1, 131078, 0, 2, 131079, 0, 3, 131080, 0, 0, 131081, 0, 4, 131082, 0, 0, 131083, 0, 2, 131084, 0, 5, 131085, 0, 3, 131086, 0, 2, 131087, 0, 0, 196608, 0, 0, 196609, 0, 1, 196610, 0, 0, 196611, 0, 4, 196612, 0, 1, 196613, 0, 4, 196614, 0, 3, 196615, 0, 3, 196616, 0, 4, 196617, 0, 3, 196618, 0, 1, 196619, 0, 2, 196620, 0, 3, 196621, 0, 0, 196622, 0, 1, 196623, 0, 0, 262144, 0, 0, 262145, 0, 2, 262146, 0, 1, 262147, 0, 0, 262148, 0, 4, 262149, 0, 3, 262150, 0, 4, 262151, 0, 3, 262152, 0, 5, 262153, 0, 4, 262154, 0, 2, 262155, 0, 4, 262156, 0, 0, 262157, 0, 4, 262158, 0, 4, 262159, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 4, 327683, 0, 1, 327684, 0, 3, 327685, 0, 1, 327686, 0, 5, 327687, 0, 2, 327688, 0, 1, 327689, 0, 2, 327690, 0, 1, 327691, 0, 5, 327692, 0, 4, 327693, 0, 0, 327694, 0, 1, 327695, 0, 0, 393216, 0, 0, 393217, 0, 2, 393218, 0, 5, 393219, 0, 2, 393220, 0, 4, 393221, 0, 5, 393222, 0, 0, 393223, 0, 0, 393224, 0, 4, 393225, 0, 4, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 5, 393230, 0, 0, 393231, 0, 0, 458752, 0, 0, 458753, 0, 3, 458754, 0, 0, 458755, 0, 2, 458756, 0, 4, 458757, 0, 5, 458758, 0, 0, 458759, 0, 4, 458760, 0, 5, 458761, 0, 1, 458762, 0, 4, 458763, 0, 4, 458764, 0, 2, 458765, 0, 1, 458766, 0, 1, 458767, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 3, 524291, 0, 3, 524292, 0, 4, 524293, 0, 2, 524294, 0, 4, 524295, 0, 3, 524296, 0, 0, 524297, 0, 2, 524298, 0, 5, 524299, 0, 5, 524300, 0, 0, 524301, 0, 4, 524302, 0, 4, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 589824, 0, 0, 589825, 0, 3, 589826, 0, 2, 589827, 0, 5, 589828, 0, 4, 589829, 0, 3, 589830, 0, 2, 589831, 0, 2, 589832, 0, 4, 589833, 0, 3, 589834, 0, 5, 589835, 0, 2, 589836, 0, 1, 589837, 0, 0, 589838, 0, 4, 589839, 0, 1, 589840, 0, 5, 589841, 0, 1, 589842, 0, 2, 589843, 0, 1, 589844, 0, 5, 589845, 0, 2, 589846, 0, 4, 589847, 0, 1, 589848, 0, 3, 589849, 0, 0, 589850, 0, 2, 589851, 0, 1, 589852, 0, 3, 589853, 0, 0, 589854, 0, 3, 589855, 0, 1, 589856, 0, 3, 589857, 0, 2, 589858, 0, 5, 589859, 0, 4, 589860, 0, 1, 589861, 0, 3, 589862, 0, 1, 589863, 0, 0, 655360, 0, 0, 655361, 0, 1, 655362, 0, 5, 655363, 0, 3, 655364, 0, 0, 655365, 0, 0, 655366, 0, 3, 655367, 0, 2, 655368, 0, 2, 655369, 0, 1, 655370, 0, 1, 655371, 0, 4, 655372, 0, 1, 655373, 0, 3, 655374, 0, 4, 655375, 0, 0, 655376, 0, 2, 655377, 0, 2, 655378, 0, 0, 655379, 0, 4, 655380, 0, 5, 655381, 0, 5, 655382, 0, 0, 655383, 0, 4, 655384, 0, 2, 655385, 0, 1, 655386, 0, 1, 655387, 0, 1, 655388, 0, 5, 655389, 0, 5, 655390, 0, 1, 655391, 0, 1, 655392, 0, 5, 655393, 0, 2, 655394, 0, 4, 655395, 0, 2, 655396, 0, 4, 655397, 0, 1, 655398, 0, 0, 655399, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 1, 720899, 0, 5, 720900, 0, 5, 720901, 0, 1, 720902, 0, 0, 720903, 0, 3, 720904, 0, 0, 720905, 0, 3, 720906, 0, 0, 720907, 0, 1, 720908, 0, 5, 720909, 0, 0, 720910, 0, 4, 720911, 0, 0, 720912, 0, 2, 720913, 0, 3, 720914, 0, 1, 720915, 0, 4, 720916, 0, 3, 720917, 0, 5, 720918, 0, 3, 720919, 0, 0, 720920, 0, 5, 720921, 0, 1, 720922, 0, 3, 720923, 0, 1, 720924, 0, 2, 720925, 0, 0, 720926, 0, 4, 720927, 0, 1, 720928, 0, 5, 720929, 0, 0, 720930, 0, 0, 720931, 0, 0, 720932, 0, 1, 720933, 0, 5, 720934, 0, 2, 720935, 0, 0, 786432, 0, 0, 786433, 0, 0, 786434, 0, 2, 786435, 0, 2, 786436, 0, 4, 786437, 0, 3, 786438, 0, 3, 786439, 0, 3, 786440, 0, 5, 786441, 0, 1, 786442, 0, 1, 786443, 0, 3, 786444, 0, 0, 786445, 0, 1, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786450, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 786457, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786470, 0, 0, 786471, 0, 0, 851968, 0, 0, 851969, 0, 5, 851970, 0, 2, 851971, 0, 3, 851972, 0, 3, 851973, 0, 2, 851974, 0, 3, 851975, 0, 1, 851976, 0, 5, 851977, 0, 4, 851978, 0, 2, 851979, 0, 1, 851980, 0, 5, 851981, 0, 1, 851982, 0, 5, 851983, 0, 0, 917504, 0, 0, 917505, 0, 3, 917506, 0, 4, 917507, 0, 0, 917508, 0, 3, 917509, 0, 5, 917510, 0, 4, 917511, 0, 4, 917512, 0, 5, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 3, 917517, 0, 0, 917518, 0, 5, 917519, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 5, 983043, 0, 3, 983044, 0, 2, 983045, 0, 5, 983046, 0, 5, 983047, 0, 5, 983048, 0, 1, 983049, 0, 0, 983050, 0, 0, 983051, 0, 4, 983052, 0, 0, 983053, 0, 4, 983054, 0, 3, 983055, 0, 0, 1048576, 0, 0, 1048577, 0, 2, 1048578, 0, 4, 1048579, 0, 1, 1048580, 0, 2, 1048581, 0, 5, 1048582, 0, 4, 1048583, 0, 0, 1048584, 0, 2, 1048585, 0, 5, 1048586, 0, 5, 1048587, 0, 3, 1048588, 0, 5, 1048589, 0, 5, 1048590, 0, 1, 1048591, 0, 0, 1114112, 0, 0, 1114113, 0, 2, 1114114, 0, 1, 1114115, 0, 5, 1114116, 0, 1, 1114117, 0, 3, 1114118, 0, 5, 1114119, 0, 5, 1114120, 0, 1, 1114121, 0, 4, 1114122, 0, 0, 1114123, 0, 5, 1114124, 0, 4, 1114125, 0, 1, 1114126, 0, 3, 1114127, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 2, 1179651, 0, 2, 1179652, 0, 5, 1179653, 0, 3, 1179654, 0, 0, 1179655, 0, 4, 1179656, 0, 4, 1179657, 0, 3, 1179658, 0, 4, 1179659, 0, 1, 1179660, 0, 0, 1179661, 0, 5, 1179662, 0, 5, 1179663, 0, 0, 1245184, 0, 0, 1245185, 0, 1, 1245186, 0, 5, 1245187, 0, 5, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 5, 1245191, 0, 4, 1245192, 0, 4, 1245193, 0, 3, 1245194, 0, 3, 1245195, 0, 3, 1245196, 0, 3, 1245197, 0, 4, 1245198, 0, 0, 1245199, 0, 0, 1310720, 0, 0, 1310721, 0, 5, 1310722, 0, 2, 1310723, 0, 3, 1310724, 0, 5, 1310725, 0, 2, 1310726, 0, 0, 1310727, 0, 0, 1310728, 0, 3, 1310729, 0, 5, 1310730, 0, 0, 1310731, 0, 1, 1310732, 0, 4, 1310733, 0, 0, 1310734, 0, 3, 1310735, 0, 0, 1376256, 0, 0, 1376257, 0, 0, 1376258, 0, 0, 1376259, 0, 0, 1376260, 0, 0, 1376261, 0, 0, 1376262, 0, 0, 1376263, 0, 0, 1376264, 0, 0, 1376265, 0, 0, 1376266, 0, 0, 1376267, 0, 0, 1376268, 0, 0, 1376269, 0, 0, 1376270, 0, 0, 1376271, 0, 0 )
 _sections_unfolded = [ "tile_set" ]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 83.5132, 197.915 )
 collision_mask = 2
 
@@ -65,37 +100,36 @@ editor_draw_drag_margin = false
 [node name="SecurityCameras" type="Node2D" parent="."]
 editor/display_folded = true
 
-[node name="SecurityCamera" parent="SecurityCameras" instance=ExtResource( 3 )]
+[node name="SecurityCamera" parent="SecurityCameras" instance=ExtResource( 5 )]
 position = Vector2( 522.558, 394.318 )
 rotation = 0.661111
 
-[node name="SecurityCamera2" parent="SecurityCameras" instance=ExtResource( 3 )]
+[node name="SecurityCamera2" parent="SecurityCameras" instance=ExtResource( 5 )]
 position = Vector2( 75.5213, 1332.45 )
 rotation = -0.848622
 
-[node name="SecurityCamera3" parent="SecurityCameras" instance=ExtResource( 3 )]
+[node name="SecurityCamera3" parent="SecurityCameras" instance=ExtResource( 5 )]
 position = Vector2( 793.992, 1338.28 )
 rotation = -1.5748
 
 [node name="Guards" type="Node2D" parent="."]
-editor/display_folded = true
 
-[node name="Guard" parent="Guards" instance=ExtResource( 4 )]
+[node name="Guard" parent="Guards" instance=ExtResource( 6 )]
 position = Vector2( 1182.49, 674.753 )
 
-[node name="Guard2" parent="Guards" instance=ExtResource( 4 )]
+[node name="Guard2" parent="Guards" instance=ExtResource( 6 )]
 position = Vector2( 543.581, 869.015 )
 
-[node name="Guard3" parent="Guards" instance=ExtResource( 4 )]
+[node name="Guard3" parent="Guards" instance=ExtResource( 6 )]
 position = Vector2( 759.428, 210.683 )
 
-[node name="Guard4" parent="Guards" instance=ExtResource( 4 )]
+[node name="Guard4" parent="Guards" instance=ExtResource( 6 )]
 position = Vector2( 334.21, 799.944 )
 rotation = -1.55963
 
 [node name="Walls" type="TileMap" parent="."]
 mode = 0
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 7 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -114,40 +148,9 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 2, 2, 1, 2, 3, 1, 2, 4, 1, 2, 5, 1, 2, 
 _sections_unfolded = [ "Collision", "tile_set" ]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2( 2.21606, 1.10803 )
 color = Color( 0.133333, 0.207843, 0.501961, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Navigation2D" type="Navigation2D" parent="."]
-
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
-navpoly = SubResource( 1 )
-enabled = true
-
-[node name="Destinations" type="Node2D" parent="Navigation2D"]
-editor/display_folded = true
-
-[node name="Position2D" type="Position2D" parent="Navigation2D/Destinations"]
-position = Vector2( 360.254, 1127.49 )
-
-[node name="Position2D2" type="Position2D" parent="Navigation2D/Destinations"]
-position = Vector2( 2393.65, 672.273 )
-
-[node name="Position2D3" type="Position2D" parent="Navigation2D/Destinations"]
-position = Vector2( 785.323, 1174.22 )
-
-[node name="Position2D4" type="Position2D" parent="Navigation2D/Destinations"]
-position = Vector2( 150.734, 738.595 )
-
-[node name="Position2D5" type="Position2D" parent="Navigation2D/Destinations"]
-position = Vector2( 743.117, 889.329 )
-
-[node name="Position2D6" type="Position2D" parent="Navigation2D/Destinations"]
-position = Vector2( 722.015, 450.694 )
-
-[node name="Position2D7" type="Position2D" parent="Navigation2D/Destinations"]
-position = Vector2( 835.065, 211.027 )
 
