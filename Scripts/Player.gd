@@ -2,19 +2,11 @@ extends "res://Scripts/Character.gd"
 
 const MAX_TURN_SPEED = 10 # deg/frame
 var motion = Vector2()
-onready var torch_node = $Torch
-var torch_active
-
-func _ready():
-	torch_active = torch_node.enabled
 
 func _process(delta):
 	update_motion(delta)
 	motion = move_and_slide(motion)
 	
-func _input(event):
-	if Input.is_action_just_pressed("Click"):
-		toggle_torch()
 	
 func update_motion(delta):
 	turn_to_mouse()
@@ -48,8 +40,3 @@ func turn_to_mouse():
 	rotation_degrees += angle_diff
 	
 	# look_at(get_global_mouse_position())
-
-func toggle_torch():
-	torch_active = !torch_active
-	torch_node.enabled = torch_active
-	
